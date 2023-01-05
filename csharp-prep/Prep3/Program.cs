@@ -22,36 +22,33 @@ class Program
             { 
                 Console.Write("What is your guess? ");
                 string userGuess = Console.ReadLine();
+                // The input is assumed to be an integer
                 guess = int.Parse(userGuess);
+
+                // Count the number of attempts to guess the magic number
+                numberGuesses++;
 
                 // Check if the guessed number is equal to the magic number
                 if (guess == magicNumber)
                 {
-                    Console.WriteLine("You guessed it!");
-                    
-                    // Count the number of attempts to guess the magic number 
-                    numberGuesses++;
                     Console.WriteLine(
-                        $"It took you {numberGuesses} attempts to guess the number"
+                        $"You guessed it! It took you {numberGuesses} "
+                        + "attempts to guess the number."
                     );
                 }
                 else if (guess < magicNumber)
                 {
                     Console.WriteLine("Higher");
-                    // Count the number of attempts to guess the magic number
-                    numberGuesses++;
                 }
                 else
                 { 
                     Console.WriteLine("Lower");
-                    // Count the number of attempts to guess the magic number
-                    numberGuesses++;
                 }
 
             }
 
-        Console.Write("\nWould you like to play again? ");
-        playAgain = Console.ReadLine();   
+            Console.Write("\nWould you like to play again? ");
+            playAgain = Console.ReadLine();   
         
         }
 
