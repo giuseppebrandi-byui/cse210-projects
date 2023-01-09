@@ -4,7 +4,7 @@
 public class Resume
 {
     // The C# convention is to start member variables with an underscore _
-    public string _name = "";
+    public string _name;
     public List<Job> _jobs = new List<Job>();
 
     // A method that displays the resume's full details
