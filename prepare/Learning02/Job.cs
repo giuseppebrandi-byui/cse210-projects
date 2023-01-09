@@ -4,11 +4,11 @@
 public class Job
 {
      // The C# convention is to start member variables with an underscore _
-    public string _company = "";
-    public string _jobTitle = "";
-    public int _startYear = 0;
-    public int _endYear = 0;
-
+    public string _company;
+    public string _jobTitle;
+    public int _startYear;
+    public int _endYear;
+   
     // A method that displays the job's full details
     public void Display()
     { 
