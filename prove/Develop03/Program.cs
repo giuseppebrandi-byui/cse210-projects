@@ -23,8 +23,7 @@ class Program
         userInterface.DisplayCurrentScripture(currentScripture);
         response = userInterface.GetUserResponse();
 
-        // while (response != "quit" && currentScripture.GetWordAppearances(pair => pair.value)
-        while (response != "quit")
+        while (response != "quit" && currentScripture.hasWordsLeft())
         {
             currentScripture = corpus.GetCurrentScripture();
             currentScripture.UpdateVisibility();

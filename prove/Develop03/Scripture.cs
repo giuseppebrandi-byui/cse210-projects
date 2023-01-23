@@ -60,27 +60,42 @@ public class Scripture
     {
         const int hiddenWords = 3;
         Random randomWord = new Random();
-        List<int> _wordsList = new List<int>();
-
-        /* Looping through the number of words that are hidden. */
-        for (int i = 0; i < hiddenWords; i++)
-        {
-            int chosenWordIndex = randomWord.Next(_wordAppearances.Count);
-            _wordsList.Add(chosenWordIndex);
-        }
+        List<int> _wordIndicesToRemoveList = new List<int>();
 
         List<KeyValuePair<string, bool>> updatedWordAppearances = _wordAppearances;
         /* Looping through the list of words and checking if the word is in the
         list of words that are hidden. */
-        for (int i = 0; i < updatedWordAppearances.Count; i++)
+        int hiddenWordsCounter = 0;
+
+        // stop when you find 3 visible words to hide or when there are no nore words in the scripture
+        for (int i = 0; hiddenWordsCounter < hiddenWords && i < updatedWordAppearances.Count; i++)
         {
-            if (_wordsList.Contains(i) && updatedWordAppearances[i].Value)
+            int chosenWordIndex = randomWord.Next(_wordAppearances.Count);
+
+            // check if word is visible
+            if (updatedWordAppearances[chosenWordIndex].Value)
             {
-                updatedWordAppearances[i] = new KeyValuePair<string, bool>(updatedWordAppearances[i].Key, false);
+                // if yes make it hidden and update the hidden words counter
+                updatedWordAppearances[chosenWordIndex] = new KeyValuePair<string, bool>(updatedWordAppearances[chosenWordIndex].Key, false);
+                hiddenWordsCounter++;
             }
-
-
         }
         _wordAppearances = updatedWordAppearances;
+    }
+
+    public bool hasWordsLeft()
+    {
+        bool wordsLeft = false;
+
+        foreach (KeyValuePair<string, bool> word in _wordAppearances)
+        {
+            if (word.Value)
+            {
+                wordsLeft = true;
+                break;
+            }
+        }
+
+        return wordsLeft;
     }
 }

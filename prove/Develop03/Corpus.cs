@@ -26,7 +26,7 @@ public class Corpus
         _scriptures = new List<Scripture>
         {
             new Scripture("John 3:16", "God so loved the world, that he gave his only begotten Son, that whosoever believeth in him should not perish, but have everlasting life."),
-            new Scripture("Proverbs 3:5-6", "Trust in the Lord with all thine heart; and lean not unto thine own understanding.In all thy ways acknowledge him, and he shall direct thy paths."),
+            new Scripture("Proverbs 3:5-6", "Trust in the Lord with all thine heart; and lean not unto thine own understanding. In all thy ways acknowledge him, and he shall direct thy paths."),
             new Scripture("Isaiah 26:3", "Thou wilt keep him in perfect peace, whose mind is stayed on thee: because he trusteth in thee.")
         };
 
@@ -39,4 +39,5 @@ public class Corpus
         int chosenScriptureIndex = randomScripture.Next(3);
         _currentScripture = _scriptures[chosenScriptureIndex];
     }
+
 }
