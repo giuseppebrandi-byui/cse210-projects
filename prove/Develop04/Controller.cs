@@ -14,10 +14,12 @@ public class Controller
         _userInterface = new UserInterface();
     }
 
+    // A function that is called when the program is run.
     public void Run()
     {
         _reflection.GenerateRandomPrompt();
         _reflection.GenerateRandomQuestion();
+        _listing.GenerateRandomPrompt();
         _userInterface.ChooseMenuOption(
             _breathing.GetName(),
             _breathing.GetStartMessage(),

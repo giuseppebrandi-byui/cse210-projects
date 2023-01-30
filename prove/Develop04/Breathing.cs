@@ -11,7 +11,7 @@ public class Breathing : Activity
     {
         _name = "Breathing";
         _startMessage = $"Welcome to the {_name} activity"
-        + "\n\nThis activity will help you relax by walking your through breathing in and out slowly. Clear your mind and focus on your breathing.";
+        + "\nThis activity will help you relax by walking your through breathing in and out slowly. Clear your mind and focus on your breathing.";
     }
 
 }

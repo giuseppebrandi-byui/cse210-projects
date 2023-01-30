@@ -93,6 +93,9 @@ public class UserInterface
         _activityDuration = int.Parse(Console.ReadLine());
     }
 
+    // It displays the breathing activity.
+    // <param name="breathingStartMessage">This is the message that will be
+    // displayed on the screen when the user starts breathing.
     public void DisplayBreathingActivity(string breathingStartMessage)
     {
         DisplayStartingMessage(breathingStartMessage);
@@ -101,9 +104,11 @@ public class UserInterface
         DisplaySpinner(Activity.spinnerDuration);
 
         DateTime currentTime = DateTime.Now;
-        DateTime futureTime = currentTime.AddSeconds(_activityDuration);
+        DateTime breathingDuration = currentTime.AddSeconds(_activityDuration);
 
-        while (currentTime < futureTime)
+
+        // Checking if the current time is less than the breathing duration.
+        while (currentTime < breathingDuration)
         {
             Console.Write($"\n\n{Breathing.breatheInMessage}");
             DisplayCountDown(Breathing.breatheInDuration);
@@ -114,6 +119,7 @@ public class UserInterface
         DisplayEndingMessage();
     }
 
+    // It displays the reflection activity.
     public void DisplayReflectionActivity(string reflectionStartMessage, string prompt, string question)
     {
         DisplayStartingMessage(reflectionStartMessage);
@@ -134,6 +140,7 @@ public class UserInterface
         DisplayEndingMessage();
     }
 
+    // It displays the listing activity.
     public void DisplayListingActivity(string listingStartMessage, string prompt)
     {
         DisplayStartingMessage(listingStartMessage);
@@ -141,13 +148,34 @@ public class UserInterface
         Console.WriteLine($"{Activity.preparationMessage}");
         DisplaySpinner(Activity.spinnerDuration);
         Console.WriteLine("\nList as many responses you can to the following prompt:"
-        + $"\n\n--- {prompt} ---");
+        + $"\n--- {prompt} ---");
         Console.Write("You may begin in: ");
         DisplayCountDown(Reflection.reflectionDuration);
-        // TO DO: user enters list
+        DisplayUserEntryList();
         DisplayEndingMessage();
     }
 
+    // It displays the list entered by the user.
+    public void DisplayUserEntryList()
+    {
+        DateTime currentTime = DateTime.Now;
+        DateTime listingDuration = currentTime.AddSeconds(_activityDuration);
+
+        int activitiesCounter = 0;
+        Console.WriteLine();
+
+        while (currentTime < listingDuration)
+        {
+            Console.Write("> ");
+            Console.ReadLine();
+            ++activitiesCounter;
+            currentTime = DateTime.Now;
+        }
+
+        Console.WriteLine($"You listed {activitiesCounter} items");
+    }
+
+    // It display the spinner.
     public void DisplaySpinner(int numSecondsToRun)
     {
         int spinnerCounter = 0;
@@ -173,6 +201,7 @@ public class UserInterface
         Console.Write(" ");
     }
 
+    // It displays the countdown.
     public void DisplayCountDown(int countDownDuration)
     {
         Console.Write(" ");
@@ -184,6 +213,7 @@ public class UserInterface
         Console.Write("\b ");
     }
 
+    // It displays the ending message.
     public void DisplayEndingMessage()
     {
         const int spinnerDuration = 4;

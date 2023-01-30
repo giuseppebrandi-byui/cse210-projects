@@ -32,14 +32,22 @@ public class Reflection : Activity
         + "\n\nThis activity will help you reflect on times in your life when you have shown strength and resilience. This will help you recognize the power you have and how you can use it in other aspects of your life.";
     }
 
+    // The getter returns a string.
     public string GetPrompt()
     {
         return _prompt;
     }
 
+    // The getter returns a string.
     public string GetQuestion()
     {
         return _question;
+    }
+
+    // The getter returns a list of strings.
+    public List<string> GetQuestions()
+    {
+        return _questions;
     }
 
     // It generates a random prompt from a list.
