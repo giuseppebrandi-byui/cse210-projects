@@ -20,11 +20,9 @@ public class UserInterface
         return _currentGoalDetailsList;
     }
 
-    // It starts the activity and handles the user input.
-    // Get the activity duration from the user input
-    public void DisplayScore()
+    public void DisplayScore(int points)
     {
-
+        Console.WriteLine($"\nYou have {points} points.");
     }
 
     // Displays the menu
@@ -57,25 +55,27 @@ public class UserInterface
         the value of `chosenOption`. */
         switch (chosenOption)
         {
+            // Create New Goal 
             case "1":
                 ChooseGoalType();
                 break;
+            // List Goals
             case "2":
                 Console.WriteLine("The Goals are:");
-                // DisplayReflectionActivity(reflectionStartMessage, reflectionPrompt, reflectionQuestion);
                 break;
-            // Listing Option
+            // Save Goals
             case "3":
-                // _activityName = listingName;
-                // DisplayListingActivity(listingStartMessage, listingPrompt);
+                // TO DO
+                break;
+            // Load Goals
+            case "4":
+                // TO DO
+                break;
+            // Record Event
+            case "5":
+                // TO DO
                 break;
             // Quit Option
-            case "4":
-                // Console.WriteLine("Thank you for using our program.");
-                break;
-            case "5":
-                // Console.WriteLine("Thank you for using our program.");
-                break;
             case "6":
                 Console.WriteLine("Thank you for using our program.");
                 break;
@@ -153,16 +153,23 @@ public class UserInterface
         }
     }
 
-    public void DisplayGoal(List<object> goalDetailsList, int goalIndex, int numberOfTimes)
+    public void DisplayGoal(int goalIndex, string goalType, string goalDescription)
     {
-        int actualNumberOfTimes = 0;
-        Console.Write($"{goalIndex}. [] {goalDetailsList[1]} ({goalDetailsList[2]})");
-        if (goalDetailsList[0].ToString() == "Checklist")
+        string[] goalDescriptionList = goalDescription.Split("\n");
+        Console.Write($"{goalDescriptionList[0]}");
+        if (goalType == "Checklist")
         {
-            Console.Write($" -- Currently completed: {actualNumberOfTimes}/{goalDetailsList[5]}");
+            Console.Write($" -- Currently completed: {goalDescriptionList[1]}");
         }
 
         Console.WriteLine();
+    }
+
+    public string ReadFileName()
+    {
+        Console.Write("What is the file name for the goal file? ");
+        string fileName = Console.ReadLine();
+        return fileName;
     }
 
 }

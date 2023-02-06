@@ -2,9 +2,10 @@ using System;
 
 public class GoalsList
 {
+    private string _fileName;
     // Class attributes
-    private List<Goal> _goalsList;
     private Goal _currentGoal;
+    private List<Goal> _goalsList;
     private List<object> _currentGoalDetailsList;
 
     // Constructor
@@ -17,6 +18,10 @@ public class GoalsList
     public List<Goal> GetGoalsList()
     {
         return _goalsList;
+    }
+    public void SetFileName(string fileName)
+    {
+        _fileName = fileName;
     }
     public void SetGoalDetailsList(List<object> goalDetailsList)
     {
@@ -55,5 +60,34 @@ public class GoalsList
                 break;
         }
         _goalsList.Add(_currentGoal);
+    }
+
+    public void SaveToFile()
+    {
+        List<string> linesList = new List<string>();
+
+        int lineCounter = 0;
+
+        foreach (Goal goal in _goalsList)
+        {
+            linesList.Add(goal.MakeDescription(++lineCounter, true));
+        }
+
+        File.WriteAllLines(_fileName, linesList);
+    }
+
+    public List<String> LoadFromCSV(string _fileName)
+    {
+        List<string> fromFile = new List<string>();
+        StreamReader streamReader = new StreamReader(_fileName);
+
+        while (!streamReader.EndOfStream)
+        {
+            string line = streamReader.ReadLine();
+            fromFile.Add(line.ToString());
+        }
+        streamReader.Close();
+
+        return fromFile;
     }
 }

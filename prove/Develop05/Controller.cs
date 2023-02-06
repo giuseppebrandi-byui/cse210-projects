@@ -14,13 +14,18 @@ public class Controller
     public void Run()
     {
         string chosenOption = "";
+        string fileName;
+        int points = 0;
+        List<string> linesList = new List<string>();
 
         while (chosenOption != "6")
         {
+            _userInterface.DisplayScore(points);
             chosenOption = _userInterface.ChooseMenuOption();
 
             List<object> currentGoalDetailsList = _userInterface.GetGoalDetailsList();
             _goalsList.SetGoalDetailsList(currentGoalDetailsList);
+
 
             switch (chosenOption)
             {
@@ -30,28 +35,24 @@ public class Controller
                 case "2":
                     ListGoals();
                     break;
+                case "3":
+                    fileName = _userInterface.ReadFileName();
+                    _goalsList.SetFileName(fileName);
+                    _goalsList.SaveToFile();
+                    break;
+
             }
         }
     }
 
     public void ListGoals()
     {
-        List<object> currentGoalDetailsList;
         int goalIndex = 0;
 
         foreach (Goal goal in _goalsList.GetGoalsList())
         {
-            currentGoalDetailsList = new List<object>();
-            currentGoalDetailsList.Add(goal.GetGoalType());
-            currentGoalDetailsList.Add(goal.GetName());
-            currentGoalDetailsList.Add(goal.GetDescription());
-            currentGoalDetailsList.Add(goal.GetPoints());
-            if (_userInterface.GetGoalChosenGoalType() == "3")
-            {
-                currentGoalDetailsList.Add((goal.GetBonusPoints()));
-                currentGoalDetailsList.Add((goal.GetNumberOfTimes()));
-            }
-            _userInterface.DisplayGoal(currentGoalDetailsList, ++goalIndex, goal.GetNumberOfTimes());
+            string goalDescription = goal.MakeDescription(++goalIndex, false);
+            _userInterface.DisplayGoal(goalIndex, goal.GetGoalType(), goalDescription);
         }
     }
 }

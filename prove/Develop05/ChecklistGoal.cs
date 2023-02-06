@@ -15,19 +15,29 @@ public class ChecklistGoal : Goal
         _actualNumberOfTimes = 0;
     }
 
-    public override int GetNumberOfTimes()
+    public int GetNumberOfTimes()
     {
         return _numberOfTimes;
     }
 
-    public override int GetBonusPoints()
+    public int GetBonusPoints()
     {
         return _bonusPoints;
     }
 
-    public void RecordAchievement()
+    public int GetActualNumberOfTimes()
     {
-        // To Do
+        return _actualNumberOfTimes;
+    }
+
+    public override string MakeDescription(int goalIndex, bool saveToFile)
+    {
+        if (saveToFile)
+        {
+            return $"{goalIndex} | {_name} | {_description} | {_points} | {_completed} | {_actualNumberOfTimes}/{_numberOfTimes}";
+        }
+
+        return $"{goalIndex}. [] {_name} ({_description})\n{_actualNumberOfTimes}/{_numberOfTimes}";
     }
 
 }

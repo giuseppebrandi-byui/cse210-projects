@@ -9,7 +9,6 @@ public class Goal
     protected string _achievement;
     protected int _awardedPoints;
     protected bool _completed;
-    protected string _fileName;
     protected string _type;
 
     // Constructor
@@ -22,7 +21,6 @@ public class Goal
         _achievement = "";
         _awardedPoints = 0;
         _completed = false;
-        _fileName = "";
     }
 
     public string GetGoalType()
@@ -76,13 +74,19 @@ public class Goal
         _achievement = achievement;
     }
 
-    public virtual int GetBonusPoints()
+    public virtual string MakeDescription(int goalIndex, bool saveToFile)
     {
-        return 0;
+        if (saveToFile)
+        {
+            return $"{goalIndex}. | {_name} | {_description} | {_points} | {_completed}";
+        }
+
+        return $"{goalIndex}. [] {_name} ({_description})\n";
     }
 
-    public virtual int GetNumberOfTimes()
-    {
-        return 0;
-    }
+    // public virtual void RecordEvent()
+    // {
+    //     Console.WriteLine($"Congratulations! You have earned {0}", GetPoints());
+    //     _completed = true;
+    // }
 }
