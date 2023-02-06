@@ -54,8 +54,8 @@ public class GoalsList
                     _currentGoalDetailsList[1].ToString(),
                     _currentGoalDetailsList[2].ToString(),
                     int.Parse(_currentGoalDetailsList[3].ToString()),
-                    int.Parse(_currentGoalDetailsList[4].ToString()),
-                    int.Parse(_currentGoalDetailsList[5].ToString())
+                    int.Parse(_currentGoalDetailsList[4].ToString())
+                // int.Parse(_currentGoalDetailsList[5].ToString())
                 );
                 break;
         }
@@ -64,30 +64,44 @@ public class GoalsList
 
     public void SaveToFile()
     {
-        List<string> linesList = new List<string>();
+        List<string> linesToFileList = new List<string>();
 
         int lineCounter = 0;
 
         foreach (Goal goal in _goalsList)
         {
-            linesList.Add(goal.MakeDescription(++lineCounter, true));
+            linesToFileList.Add(goal.MakeDescription(++lineCounter, true));
         }
 
-        File.WriteAllLines(_fileName, linesList);
+        File.WriteAllLines(_fileName, linesToFileList);
     }
 
-    public List<String> LoadFromCSV(string _fileName)
+    public void LoadFromFile()
     {
-        List<string> fromFile = new List<string>();
+        // List<string> linesFromFile = new List<string>();
         StreamReader streamReader = new StreamReader(_fileName);
+
+        _goalsList.Clear();
 
         while (!streamReader.EndOfStream)
         {
-            string line = streamReader.ReadLine();
-            fromFile.Add(line.ToString());
+            string goalDetails = streamReader.ReadLine();
+            string[] goalDetailsList = goalDetails.Split(" | ");
+            if (goalDetailsList.Length == 6)
+            {
+                // str type, string name, string description, int points, int number of points)
+                // 2. | Checklist | ffff ffff | rrrr rrr | 30 | False | 0 / 3
+                _goalsList.Add(new Goal(goalDetailsList[1], goalDetailsList[2], goalDetailsList[3], int.Parse(goalDetailsList[4])));
+            }
+            else
+            {
+                _goalsList.Add(new ChecklistGoal(goalDetailsList[1], goalDetailsList[2], goalDetailsList[3],
+                    int.Parse(goalDetailsList[4]), int.Parse(goalDetailsList[6].Split("/")[1])));
+            }
+
         }
         streamReader.Close();
 
-        return fromFile;
+        // return linesFromFile;
     }
 }

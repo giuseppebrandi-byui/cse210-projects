@@ -50,40 +50,6 @@ public class UserInterface
         Console.Write("Select a choice from the menu: ");
         chosenOption = Console.ReadLine();
 
-        /* A switch statement that is checking the value of the variable
-        `chosenOption` and then executing the code in the case that matches
-        the value of `chosenOption`. */
-        switch (chosenOption)
-        {
-            // Create New Goal 
-            case "1":
-                ChooseGoalType();
-                break;
-            // List Goals
-            case "2":
-                Console.WriteLine("The Goals are:");
-                break;
-            // Save Goals
-            case "3":
-                // TO DO
-                break;
-            // Load Goals
-            case "4":
-                // TO DO
-                break;
-            // Record Event
-            case "5":
-                // TO DO
-                break;
-            // Quit Option
-            case "6":
-                Console.WriteLine("Thank you for using our program.");
-                break;
-            // Print message for invalid option
-            default:
-                Console.WriteLine("Invalid entry: please enter the correct menu option.");
-                break;
-        }
         return chosenOption;
     }
 
@@ -165,10 +131,12 @@ public class UserInterface
         Console.WriteLine();
     }
 
-    public string ReadFileName()
+    public string ReadFileName(bool save)
     {
         Console.Write("What is the file name for the goal file? ");
         string fileName = Console.ReadLine();
+        string process = save ? "sav" : "load";
+        Console.Write($"{fileName} has been {process}ed");
         return fileName;
     }
 

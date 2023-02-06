@@ -78,15 +78,10 @@ public class Goal
     {
         if (saveToFile)
         {
-            return $"{goalIndex}. | {_name} | {_description} | {_points} | {_completed}";
+            return $"{goalIndex}. | {_type} | {_name} | {_description} | {_points} | {_completed}";
         }
 
         return $"{goalIndex}. [] {_name} ({_description})\n";
     }
 
-    // public virtual void RecordEvent()
-    // {
-    //     Console.WriteLine($"Congratulations! You have earned {0}", GetPoints());
-    //     _completed = true;
-    // }
 }
