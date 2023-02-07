@@ -30,6 +30,14 @@ public class ChecklistGoal : Goal
         return _actualNumberOfTimes;
     }
 
+    public override void SetCompleted(bool completed)
+    {
+        if (_actualNumberOfTimes == _numberOfTimes)
+        {
+            _completed = completed;
+        }
+    }
+
     public override string MakeDescription(int goalIndex, bool saveToFile)
     {
         if (saveToFile)

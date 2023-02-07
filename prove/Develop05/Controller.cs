@@ -4,6 +4,8 @@ public class Controller
 {
     private GoalsList _goalsList;
     private UserInterface _userInterface;
+    private int totalPoints;
+
     public Controller()
     {
         _goalsList = new GoalsList();
@@ -15,13 +17,14 @@ public class Controller
     {
         string chosenOption = "";
         string fileName;
-        int points = 0;
         List<string> linesList = new List<string>();
         List<object> currentGoalDetailsList;
 
+        totalPoints = 0;
+
         while (chosenOption != "6")
         {
-            _userInterface.DisplayScore(points);
+            _userInterface.DisplayScore(totalPoints);
             chosenOption = _userInterface.ChooseMenuOption();
 
             switch (chosenOption)
@@ -47,7 +50,8 @@ public class Controller
                     break;
                 // Record Event
                 case "5":
-                    // TO DO
+                    ListBriefGoals();
+                    RecordAchievements();
                     break;
                 // Quit Option
                 case "6":
@@ -65,12 +69,37 @@ public class Controller
     {
         int goalIndex = 0;
 
-        Console.WriteLine("The Goals are:");
+        Console.WriteLine("The goals are:");
 
         foreach (Goal goal in _goalsList.GetGoalsList())
         {
             string goalDescription = goal.MakeDescription(++goalIndex, false);
             _userInterface.DisplayGoal(goalIndex, goal.GetGoalType(), goalDescription);
         }
+    }
+
+    public void ListBriefGoals()
+    {
+        int goalIndex = 0;
+
+        Console.WriteLine("The goals are:");
+
+        foreach (Goal goal in _goalsList.GetGoalsList())
+        {
+            Console.WriteLine($"{++goalIndex}. {goal.GetName()}");
+        }
+    }
+
+    public void RecordAchievements()
+    {
+        int awardedPoints;
+
+        Console.Write("Which goal did you accomplish? ");
+        int accomplishedGoalIndex = int.Parse(Console.ReadLine());
+        Goal accomplishedGoal = _goalsList.GetGoalsList()[accomplishedGoalIndex - 1];
+        awardedPoints = accomplishedGoal.GetPoints();
+        Console.WriteLine($"Congratulations you have gained {awardedPoints} points.");
+        totalPoints += awardedPoints;
+        accomplishedGoal.SetCompleted(true);
     }
 }

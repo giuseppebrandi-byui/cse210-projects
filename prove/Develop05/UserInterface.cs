@@ -20,9 +20,9 @@ public class UserInterface
         return _currentGoalDetailsList;
     }
 
-    public void DisplayScore(int points)
+    public void DisplayScore(int awardedPoints)
     {
-        Console.WriteLine($"\nYou have {points} points.");
+        Console.WriteLine($"\nYou have {awardedPoints} points.");
     }
 
     // Displays the menu
@@ -136,7 +136,7 @@ public class UserInterface
         Console.Write("What is the file name for the goal file? ");
         string fileName = Console.ReadLine();
         string process = save ? "sav" : "load";
-        Console.Write($"{fileName} has been {process}ed");
+        Console.WriteLine($"{fileName} has been {process}ed");
         return fileName;
     }
 

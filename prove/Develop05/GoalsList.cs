@@ -33,7 +33,7 @@ public class GoalsList
         switch (_currentGoalDetailsList[0])
         {
             case "1":
-                _currentGoal = new Goal(
+                _currentGoal = new SimpleGoal(
                     "Simple",
                     _currentGoalDetailsList[1].ToString(),
                     _currentGoalDetailsList[2].ToString(),
@@ -41,7 +41,7 @@ public class GoalsList
                 );
                 break;
             case "2":
-                _currentGoal = new Goal(
+                _currentGoal = new EternalGoal(
                     "Eternal",
                     _currentGoalDetailsList[1].ToString(),
                     _currentGoalDetailsList[2].ToString(),
@@ -55,7 +55,6 @@ public class GoalsList
                     _currentGoalDetailsList[2].ToString(),
                     int.Parse(_currentGoalDetailsList[3].ToString()),
                     int.Parse(_currentGoalDetailsList[4].ToString())
-                // int.Parse(_currentGoalDetailsList[5].ToString())
                 );
                 break;
         }
@@ -78,7 +77,6 @@ public class GoalsList
 
     public void LoadFromFile()
     {
-        // List<string> linesFromFile = new List<string>();
         StreamReader streamReader = new StreamReader(_fileName);
 
         _goalsList.Clear();
@@ -89,8 +87,6 @@ public class GoalsList
             string[] goalDetailsList = goalDetails.Split(" | ");
             if (goalDetailsList.Length == 6)
             {
-                // str type, string name, string description, int points, int number of points)
-                // 2. | Checklist | ffff ffff | rrrr rrr | 30 | False | 0 / 3
                 _goalsList.Add(new Goal(goalDetailsList[1], goalDetailsList[2], goalDetailsList[3], int.Parse(goalDetailsList[4])));
             }
             else
@@ -102,6 +98,6 @@ public class GoalsList
         }
         streamReader.Close();
 
-        // return linesFromFile;
     }
+
 }

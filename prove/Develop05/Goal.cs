@@ -74,14 +74,27 @@ public class Goal
         _achievement = achievement;
     }
 
+    // It sets the completed status.
+    public virtual void SetCompleted(bool completed)
+    {
+        _completed = completed;
+    }
+
     public virtual string MakeDescription(int goalIndex, bool saveToFile)
     {
+        string checkmark = "";
+
         if (saveToFile)
         {
             return $"{goalIndex}. | {_type} | {_name} | {_description} | {_points} | {_completed}";
         }
 
-        return $"{goalIndex}. [] {_name} ({_description})\n";
+        if (_completed && _type != "Eternal")
+        {
+            checkmark = "x";
+        }
+
+        return $"{goalIndex}. [{checkmark}] {_name} ({_description})\n";
     }
 
 }
