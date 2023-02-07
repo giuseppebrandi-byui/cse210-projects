@@ -19,6 +19,8 @@ public class GoalsList
     {
         return _goalsList;
     }
+
+    // The setters sets the goal name
     public void SetFileName(string fileName)
     {
         _fileName = fileName;
@@ -61,6 +63,7 @@ public class GoalsList
         _goalsList.Add(_currentGoal);
     }
 
+    // It saves the list of goals in a file
     public void SaveToFile()
     {
         List<string> linesToFileList = new List<string>();
@@ -75,6 +78,7 @@ public class GoalsList
         File.WriteAllLines(_fileName, linesToFileList);
     }
 
+    // It loads a previously saved file with the list of goals
     public void LoadFromFile()
     {
         StreamReader streamReader = new StreamReader(_fileName);

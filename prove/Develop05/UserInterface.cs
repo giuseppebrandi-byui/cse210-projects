@@ -2,14 +2,17 @@ using System;
 
 public class UserInterface
 {
+    // Class attributes
     private string _chosenGoalTypeChoice;
     private List<object> _currentGoalDetailsList;
 
+    // Controller
     public UserInterface()
     {
         _currentGoalDetailsList = new List<object>();
     }
 
+    // It gets the chosen goal type
     public string GetGoalChosenGoalType()
     {
         return _chosenGoalTypeChoice;
@@ -20,6 +23,7 @@ public class UserInterface
         return _currentGoalDetailsList;
     }
 
+    // It displays the awarded number of points for achieving a goal
     public void DisplayScore(int awardedPoints)
     {
         Console.WriteLine($"\nYou have {awardedPoints} points.");
@@ -53,6 +57,7 @@ public class UserInterface
         return chosenOption;
     }
 
+    // It handles the user interation with the submenu
     public void ChooseGoalType()
     {
         // Create a list for the menu
@@ -80,6 +85,7 @@ public class UserInterface
         ReadGoalDetails();
     }
 
+    // It checks that the user enters the correct submenu option
     public bool ValidateGoalDetails()
     {
         if (!_chosenGoalTypeChoice.Contains("1")
@@ -93,6 +99,7 @@ public class UserInterface
         return true;
     }
 
+    // It handles the information provided by the user and stores the values
     public void ReadGoalDetails()
     {
         int numberOfTimes = 0;
@@ -119,6 +126,7 @@ public class UserInterface
         }
     }
 
+    // It displays the goals
     public void DisplayGoal(int goalIndex, string goalType, string goalDescription)
     {
         string[] goalDescriptionList = goalDescription.Split("\n");
@@ -131,6 +139,7 @@ public class UserInterface
         Console.WriteLine();
     }
 
+    // It handles the user interaction with the menu when saving or loading a file
     public string ReadFileName(bool save)
     {
         Console.Write("What is the file name for the goal file? ");

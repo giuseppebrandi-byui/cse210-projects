@@ -2,8 +2,10 @@ using System;
 
 class Program
 {
+    // Class attributes
     private Controller _controller;
 
+    // Controller
     public Program()
     {
         _controller = new Controller();
