@@ -130,7 +130,7 @@ public class EventsList
             "L3 5QB"
         };
 
-        // Create an event list
+        // Initialize an event list
         _eventsList = new List<Event>();
         // Set the number of events to zero
         int numberOfEvents = 0;
